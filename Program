@@ -1,0 +1,53 @@
+def palindrome():
+
+        validInput = False #Begins while loop
+        
+        #Loops through untill valid response
+        while (validInput == False):
+
+                #Try to get the correct input of an int
+                try:
+                        #Iterations the amount of palindromes
+                        iterations = int(input("How many words would you like to test are palindromes? \nPlease input a number no larger than 20 \nEnter your number:   "))
+
+                        #If iterations is less or equal to 20 and isnt a negative number then input is valid
+                        #Else let user know the error they made and re ask question
+                        if (iterations <= 20 and iterations > 0):
+                                validInput = True
+                        else:
+                                print("Invalid Input! \nPlease enter a number from 1 - 20")
+                                spacer = input()
+                                clear(2)
+                                
+                #If value to iteration isnt an int let user know their error and re ask the question
+                except ValueError:
+                        print("Invalid Input! \nPlease input a whole number")
+                        spacer = input()
+                        clear(2)
+
+        texts = [] #Holds all words from user
+        text = [] #Holds all words from user reversed
+        correct = False # Begins the loop
+        
+        #Asks for a word the amount of times player inputed into iterations
+        for x in range(iterations):
+
+                #loops through untill there is a valid respons
+                while (correct == False):
+
+                        #Gets the word user would like to test 
+                        word = input("")
+
+                        #If the word exceeds the character limit of 70 then re ask the question
+                        if (len(word) > 70):
+                                print("Invalid input! \nExceeded 70 charachter limit")
+                                spacer = input()
+
+                        #If word is within the parametres then:
+                        else:
+                                texts.append(word) #Stores the word
+                                text.append(word[::-1]) #Reverse the word and add it to the stcet list
+                                correct = True #Exit loop
+        
+def clear(amt):
+        print("\n" * amt)
