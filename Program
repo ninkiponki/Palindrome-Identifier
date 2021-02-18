@@ -1,53 +1,80 @@
+# -------------------------------------------------------------------------------------
+#
+#   Author: Thomas Copo
+#   Date: 18/2/2021
+#   Purpose: To determine if a list of up to 20 words are a palindrome or not
+#
+# -------------------------------------------------------------------------------------
+
+
+# Global Variables
+amt = 0  # Stores the amount of words user wants to input
+texts = []  # Holds all words from user
+text = []  # Holds all words from user reversed
+
+
+# Main Function
 def palindrome():
+    validInput = False  # Begins while loop
 
-        validInput = False #Begins while loop
-        
-        #Loops through untill valid response
-        while (validInput == False):
+    # Loops through until valid response
+    while not validInput:
 
-                #Try to get the correct input of an int
-                try:
-                        #Iterations the amount of palindromes
-                        iterations = int(input("How many words would you like to test are palindromes? \nPlease input a number no larger than 20 \nEnter your number:   "))
+        # Try to get the correct input of an int
+        try:
+            # Iterations the amount of palindromes
+            amt = int(input("How many words would you like to test are palindromes? "
+                            "\nPlease input a number no larger than 20"
+                            "\nEnter your number:   "))
 
-                        #If iterations is less or equal to 20 and isnt a negative number then input is valid
-                        #Else let user know the error they made and re ask question
-                        if (iterations <= 20 and iterations > 0):
-                                validInput = True
-                        else:
-                                print("Invalid Input! \nPlease enter a number from 1 - 20")
-                                spacer = input()
-                                clear(2)
-                                
-                #If value to iteration isnt an int let user know their error and re ask the question
-                except ValueError:
-                        print("Invalid Input! \nPlease input a whole number")
-                        spacer = input()
-                        clear(2)
+            # If iterations is less or equal to 20 and isn't a negative number then input is valid
+            # Else let user know the error they made and re ask question
+            if 20 >= amt > 0:
+                validInput = True
+            else:
+                print("Invalid Input! \nPlease enter a number from 1 - 20")
+                spacer = input()  # Spaces out the print statements to give the user a chance to read
+                print("\n" * 2)
 
-        texts = [] #Holds all words from user
-        text = [] #Holds all words from user reversed
-        correct = False # Begins the loop
-        
-        #Asks for a word the amount of times player inputed into iterations
-        for x in range(iterations):
+        # If value to iteration isn't an int let user know their error and re ask the question
+        except ValueError:
+            print("Invalid Input! \nPlease input a whole number")
+            spacer = input()
+            print("\n" * 2)
 
-                #loops through untill there is a valid respons
-                while (correct == False):
+    # Asks for a word the amount of times the user input into iterations
+    for x in range(amt):
 
-                        #Gets the word user would like to test 
-                        word = input("")
+        correct = False  # Begins the loop
 
-                        #If the word exceeds the character limit of 70 then re ask the question
-                        if (len(word) > 70):
-                                print("Invalid input! \nExceeded 70 charachter limit")
-                                spacer = input()
+        # loops through until there is a valid response
+        while not correct:
 
-                        #If word is within the parametres then:
-                        else:
-                                texts.append(word) #Stores the word
-                                text.append(word[::-1]) #Reverse the word and add it to the stcet list
-                                correct = True #Exit loop
-        
-def clear(amt):
-        print("\n" * amt)
+            # Gets the word user would like to test
+            word = input("Enter a word:   ")
+
+            # If the word exceeds the character limit of 70 then re ask the question
+            if len(word) > 70:
+                print("Invalid input! \nExceeded 70 character limit")
+                spacer = input()
+
+            # If word is within the parameters then:
+            else:
+                texts.append(word)  # Stores the word
+                text.append(word[::-1])  # Reverse the word and add it to the text list
+                correct = True  # Exit loop
+
+    # Goes through every word
+    for x in range(amt):
+
+        # If the word is the same backwards then it is a palindrome
+        if texts[x].lower() == text[x].lower():
+            print("Yes '" + texts[x] + "'")
+
+        # Else the word is not a palindrome
+        else:
+            print("No '" + texts[x] + "'")
+
+
+# Calls the function palindrome
+palindrome()
