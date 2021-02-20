@@ -1,7 +1,7 @@
 # -------------------------------------------------------------------------------------
 #
 #   Author: Thomas Copo
-#   Date: 18/2/2021
+#   Date: 18/2/2021 - 20/2/2021
 #   Purpose: To determine if a list of up to 20 words are a palindrome or not
 #
 # -------------------------------------------------------------------------------------
@@ -9,8 +9,9 @@
 
 # Global Variables
 amt = 0  # Stores the amount of words user wants to input
-texts = []  # Holds all words from user
-text = []  # Holds all words from user reversed
+words = [] # Stores the original words from the user
+fWords = []  # Holds all words from user
+bWords = []  # Holds all words from user reversed
 
 
 # Main Function
@@ -60,20 +61,26 @@ def palindrome():
 
             # If word is within the parameters then:
             else:
-                texts.append(word)  # Stores the word
-                text.append(word[::-1])  # Reverse the word and add it to the text list
+                words.append(word)  # Stores the word in the word list
+
+                # convert word to all lowercase and removes spaces to only then store it in the list
+                fWords.append(word.lower().replace(" ", ""))
+
+                # reverses word then converts word to all lowercase and removes spaces to only then store it in the list
+                bWords.append(word[::-1].lower().replace(" ", ""))
+
                 correct = True  # Exit loop
 
     # Goes through every word
     for x in range(amt):
 
         # If the word is the same backwards then it is a palindrome
-        if texts[x].lower() == text[x].lower():
-            print("Yes '" + texts[x] + "'")
+        if fWords[x] == bWords[x]:
+            print("Yes '" + words[x] + "'")
 
         # Else the word is not a palindrome
         else:
-            print("No '" + texts[x] + "'")
+            print("No '" + words[x] + "'")
 
 
 # Calls the function palindrome
